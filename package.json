@@ -1,0 +1,14 @@
+{
+  "name": "administration-bot-discord",
+  "version": "1.0.0",
+  "description": "An administration botdevelopped by LEOBSST",
+  "main": "index.js",
+  "dependencies": {
+    "discord.js": "^12.5.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "LEOBSST",
+  "license": "ISC"
+}
