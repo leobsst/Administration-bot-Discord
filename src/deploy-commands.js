@@ -1,18 +1,13 @@
 const { REST, Routes } = require('discord.js')
 const config = require('./config')
 const { loadCommands } = require('./lib/loader')
+const { deployCommands } = require('./lib/deploy')
 
-// Enregistre les commandes auprès de Discord. À relancer à chaque ajout/modification de commande.
+// Déploiement manuel des commandes (le bot les synchronise aussi à chaque démarrage).
 async function main() {
-  const body = loadCommands().map((command) => command.data.toJSON())
   const rest = new REST().setToken(config.token)
   const application = await rest.get(Routes.currentApplication())
-
-  const route = config.guildId
-    ? Routes.applicationGuildCommands(application.id, config.guildId)
-    : Routes.applicationCommands(application.id)
-
-  const data = await rest.put(route, { body })
+  const data = await deployCommands(rest, application.id, loadCommands(), config.guildId)
   console.log(`${data.length} commande(s) déployée(s) ${config.guildId ? `sur le serveur ${config.guildId}` : 'globalement'}.`)
 }
 
