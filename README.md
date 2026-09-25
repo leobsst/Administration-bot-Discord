@@ -12,7 +12,6 @@ Bot d'administration Discord basé sur [discord.js](https://discord.js.org/) v14
 ```bash
 npm install
 cp .env.example .env   # puis renseigner DISCORD_TOKEN
-npm run deploy         # enregistre les slash commands auprès de Discord
 npm start
 ```
 
@@ -20,8 +19,20 @@ Invitez le bot avec les scopes `bot` et `applications.commands`, et les permissi
 `Bannir des membres`, `Expulser des membres`, `Exclure temporairement des membres`,
 `Envoyer des messages`, `Intégrer des liens` et `Gérer les rôles` (rôle automatique).
 
-`npm run deploy` doit être relancé à chaque ajout ou modification d'une commande.
-Avec `GUILD_ID`, le déploiement est instantané sur ce serveur ; sans, il est global.
+Les slash commands sont synchronisées automatiquement à chaque démarrage du bot
+(`npm run deploy` permet de le faire sans lancer le bot). Avec `GUILD_ID`, elles
+apparaissent instantanément sur ce serveur ; sans, elles sont globales.
+
+## Hébergement Pterodactyl (egg « node.js generic »)
+
+1. Image Docker : **Nodejs 24** (ou 22 minimum).
+2. Variable **Main file** : `src/index.js`.
+3. Déposez un fichier `.env` à la racine du serveur (voir `.env.example`) : l'egg ne
+   permet pas de définir `DISCORD_TOKEN` comme variable, le bot lit donc ce fichier.
+4. Optionnel : renseignez *Git Repo Address* / *Install Branch* et *Auto Update* = 1
+   pour récupérer les mises à jour à chaque redémarrage.
+
+Les dépendances sont installées par l'egg (`npm install`) à chaque démarrage.
 
 ## Commandes
 
