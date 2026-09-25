@@ -1,13 +1,17 @@
 {
   "name": "administration-bot-discord",
-  "version": "1.0.0",
-  "description": "An administration botdevelopped by LEOBSST",
-  "main": "index.js",
-  "dependencies": {
-    "discord.js": "^12.5.3"
-  },
+  "version": "2.0.0",
+  "description": "An administration bot developed by LEOBSST",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node --env-file-if-exists=.env src/index.js",
+    "deploy": "node --env-file-if-exists=.env src/deploy-commands.js"
+  },
+  "engines": {
+    "node": ">=22.12"
+  },
+  "dependencies": {
+    "discord.js": "^14.27.0"
   },
   "author": "LEOBSST",
   "license": "ISC"

@@ -1,1 +1,2 @@
-worker: node index.js
+release: npm run deploy
+worker: npm start
