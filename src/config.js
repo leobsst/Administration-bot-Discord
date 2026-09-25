@@ -1,3 +1,10 @@
+const fs = require('node:fs')
+const path = require('node:path')
+
+// Charge le .env à la racine du projet s'il existe (les variables déjà définies ne sont pas écrasées).
+const envFile = path.join(__dirname, '..', '.env')
+if (fs.existsSync(envFile)) process.loadEnvFile(envFile)
+
 const token = process.env.DISCORD_TOKEN
 
 if (!token) {
